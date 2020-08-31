@@ -1,0 +1,21 @@
+---
+- hosts: webservers
+  become: yes
+  become_user: root
+  tasks:
+  - name: Install git
+    package:
+     name: git
+     state: present
+  - name: Install Java
+    package:
+     name: openjdk-8-jdk
+     state: present
+  - name: copy chromedriver
+    copy:
+     src: /home/nalin/chromedriver
+     dest: /home/nalin/
+  - name: Install chromium browser
+    package:
+     name: chromium-browser
+     state: present
